@@ -40,8 +40,7 @@ export default function StudentApplications() {
         <EmptyState title="No applications here yet" description="Browse drives and apply to see them here." />
       ) : (
         <div className="card overflow-hidden">
-          <div className="overflow-x-auto">
-          <table className="min-w-[640px] w-full text-left text-sm">
+          <table className="w-full text-left text-sm">
             <thead className="bg-gray-50 text-xs uppercase text-gray-400">
               <tr>
                 <th className="px-5 py-3">Drive / Company</th>
@@ -65,7 +64,6 @@ export default function StudentApplications() {
               ))}
             </tbody>
           </table>
-          </div>
         </div>
       )}
     </DashboardLayout>

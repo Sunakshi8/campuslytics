@@ -34,7 +34,7 @@ export default function Landing() {
         </div>
       </nav>
 
-      <section className="mx-auto grid max-w-6xl grid-cols-1 items-center gap-10 px-4 py-10 sm:px-8 sm:py-16 md:grid-cols-2">
+      <section className="mx-auto grid max-w-6xl grid-cols-1 items-center gap-10 px-8 py-16 md:grid-cols-2">
         <div>
           <p className="mb-3 text-sm font-semibold uppercase tracking-wide text-brand-600">
             Your Campus. Your Career.
@@ -58,7 +58,7 @@ export default function Landing() {
               <PlayCircle size={18} /> Watch Demo
             </button>
           </div>
-          <div className="mt-10 grid grid-cols-2 gap-4 sm:grid-cols-4">
+          <div className="mt-10 grid grid-cols-4 gap-4">
             {STATS.map((s) => (
               <div key={s.label}>
                 <p className="text-xl font-extrabold text-ink-900">{s.value}</p>

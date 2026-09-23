@@ -77,7 +77,7 @@ export default function StudentProfile() {
       <div className="grid grid-cols-1 gap-6 lg:grid-cols-3">
         <form onSubmit={handleSave} className="card space-y-4 p-6 lg:col-span-2">
           <h3 className="font-bold text-ink-900">Academic Details</h3>
-          <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
+          <div className="grid grid-cols-2 gap-4">
             <TextInput
               label="Branch"
               value={profile.branch || ''}

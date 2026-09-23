@@ -64,7 +64,7 @@ export default function CompanySignup() {
             value={form.password}
             onChange={(e) => setForm({ ...form, password: e.target.value })}
           />
-          <div className="grid grid-cols-1 gap-3 sm:grid-cols-2">
+          <div className="grid grid-cols-2 gap-3">
             <TextInput
               label="Industry"
               value={form.industry}

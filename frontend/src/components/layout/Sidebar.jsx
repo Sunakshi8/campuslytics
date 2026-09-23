@@ -3,7 +3,6 @@ import { useDispatch } from 'react-redux';
 import {
   GraduationCap, LayoutDashboard, User, Search, FileText, Bookmark, Bell, Settings,
   Building2, ClipboardList, Users, BarChart3, LogOut, Sparkles,
-  X,
 } from 'lucide-react';
 import { logout } from '../../app/features/authSlice';
 
@@ -36,7 +35,7 @@ const TPO_LINKS = [
 
 const LINKS_BY_ROLE = { student: STUDENT_LINKS, company: COMPANY_LINKS, tpo: TPO_LINKS };
 
-export default function Sidebar({ role, open = false, onClose }) {
+export default function Sidebar({ role }) {
   const links = LINKS_BY_ROLE[role] || [];
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -47,15 +46,10 @@ export default function Sidebar({ role, open = false, onClose }) {
   };
 
   return (
-    <>
-      {open && <button aria-label="Close navigation" onClick={onClose} className="fixed inset-0 z-30 bg-ink-900/50 md:hidden" />}
-    <aside className={`fixed inset-y-0 left-0 z-40 flex h-screen w-60 flex-shrink-0 flex-col border-r border-gray-200 bg-ink-900 text-gray-300 transition-transform duration-200 md:static md:z-auto md:translate-x-0 ${open ? 'translate-x-0' : '-translate-x-full'}`}>
+    <aside className="flex h-screen w-60 flex-shrink-0 flex-col border-r border-gray-200 bg-ink-900 text-gray-300">
       <div className="flex items-center gap-2 px-5 py-5">
         <GraduationCap className="h-6 w-6 text-brand-400" />
         <span className="text-lg font-bold text-white">Campuslytics</span>
-        <button aria-label="Close navigation" onClick={onClose} className="ml-auto rounded-md p-1 text-gray-400 hover:bg-white/10 hover:text-white md:hidden">
-          <X size={20} />
-        </button>
       </div>
       <nav className="flex-1 space-y-1 px-3 py-2">
         {links.map(({ to, label, icon: Icon }) => (
@@ -94,6 +88,5 @@ export default function Sidebar({ role, open = false, onClose }) {
         </button>
       </div>
     </aside>
-    </>
   );
 }

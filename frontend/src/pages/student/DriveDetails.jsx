@@ -98,7 +98,7 @@ export default function DriveDetails() {
         {tab === 'Overview' && (
           <div className="space-y-4">
             <p className="text-sm text-gray-600">{drive.description}</p>
-            <div className="grid grid-cols-1 gap-4 sm:grid-cols-3">
+            <div className="grid grid-cols-3 gap-4">
               <InfoBlock icon={Briefcase} label="Batch" value={drive.batch || 'N/A'} />
               <InfoBlock icon={Briefcase} label="Job Type" value={drive.jobType} />
               <InfoBlock icon={IndianRupee} label="Stipend" value={drive.stipend ? `₹${drive.stipend}/mo` : 'N/A'} />

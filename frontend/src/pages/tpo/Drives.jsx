@@ -40,8 +40,7 @@ export default function TpoDrives() {
         <EmptyState title="No drives posted yet" />
       ) : (
         <div className="card overflow-hidden">
-          <div className="overflow-x-auto">
-          <table className="min-w-[640px] w-full text-left text-sm">
+          <table className="w-full text-left text-sm">
             <thead className="bg-gray-50 text-xs uppercase text-gray-400">
               <tr>
                 <th className="px-5 py-3">Company</th>
@@ -65,7 +64,6 @@ export default function TpoDrives() {
               ))}
             </tbody>
           </table>
-          </div>
         </div>
       )}
     </DashboardLayout>
