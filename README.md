@@ -54,7 +54,8 @@ All three roles get **JWT-secured, role-gated access** and an in-app **notificat
 
 ---
 
-## 🧠 AI Placement Intelligence *(new)*
+## 🧠 AI Placement Intelligence 
+
 
 A dedicated AI module sitting on top of the existing platform — **one shared AI backend, two copilots**. It doesn't replace any decision-maker: **the AI assists, the recruiter still decides.**
 
