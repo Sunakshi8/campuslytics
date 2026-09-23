@@ -1,4 +1,4 @@
-# 🎓 Campuslytics — Placement & Internship Portal
+## Campuslytics — Placement & Internship Portal
 ## 🚀 Live Demo
 👉https://campuslytics-kpjt.vercel.app/
 
@@ -36,13 +36,13 @@ A full-stack MERN platform that centralizes student, company, and TPO placement 
 
 ---
 
-## 📌 Problem Statement
+##  Problem Statement
 
 Colleges often manage placements through spreadsheets, emails, and manual screening — making it hard to track applications, filter eligible students, and analyze placement trends. Recruiters manually skim hundreds of resumes per drive, and students are left guessing why they got rejected. **Campuslytics** replaces that with a single platform that automates eligibility checks, application tracking, placement analytics, **and now AI-assisted screening and skill guidance** for students, companies, and the TPO office.
 
 ---
 
-## ✨ Core Features
+##  Core Features
 
 | Role | What they can do |
 |---|---|
