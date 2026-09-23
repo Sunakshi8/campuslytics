@@ -1,4 +1,6 @@
 # 🎓 Campuslytics — Placement & Internship Portal
+## 🚀 Live Demo
+https://campuslytics.vercel.app/
 
 **Your Campus. Your Career.**
 A full-stack MERN platform that centralizes student, company, and TPO placement workflows — automated eligibility checks, application tracking, live placement analytics, and an **AI Placement Intelligence** layer that gives recruiters an AI-ranked shortlist and gives students a personal skill-gap coach.
@@ -288,7 +290,6 @@ erDiagram
     }
 ```
 
----
 
 ## 🔄 Key Flows
 
@@ -367,9 +368,7 @@ sequenceDiagram
     AI-->>A: Roadmap + ranked missing skills
     A-->>F: Eligible / Near-match / Missed counts + roadmap
     F-->>St: Personalized Skill Gap Dashboard
-```
 
----
 
 ## 🛠️ Tech Stack
 
@@ -387,61 +386,148 @@ sequenceDiagram
 ---
 
 ## 📁 Project Structure
-
-```
 campuslytics/
+├── README.md
+├── README_AI.md                             # Complete AI setup & run instructions
+│
 ├── backend/
+│   ├── .env                                 # Server, MongoDB URI & GEMINI_API_KEY
+│   ├── .env.example
+│   ├── .gitignore
+│   ├── package.json                         # Includes @google/genai, test:ai script
+│   ├── package-lock.json
 │   └── src/
-│       ├── config/         # db.js, cloudinary.js
-│       ├── models/         # User, StudentProfile, CompanyProfile, Drive, Application,
-│       │                   # AIAnalysis, SkillGapReport ...
-│       ├── controllers/    # authController, studentController, companyController,
-│       │                   # tpoController, aiController
-│       ├── routes/         # authRoutes, studentRoutes, companyRoutes, tpoRoutes, aiRoutes
-│       ├── middleware/     # auth (JWT + role guard), upload, errorHandler
-│       └── utils/          # eligibilityEngine.js, resumeParser.js, sendEmail.js, seed.js
-│       └── services/
-│           └── ai/         # geminiClient.js, resumeScreening.js, skillGapEngine.js
+│       ├── app.js                           #  Mounted /api/ai routes
+│       ├── server.js                        # HTTP server & socket initialization
+│       │
+│       ├── config/
+│       │   └── db.js                        # MongoDB Mongoose connection
+│       │
+│       ├── services/                        
+│       │   └── geminiService.js             #  Gemini API client + Heuristic fallback engine
+│       │
+│       ├── models/
+│       │   ├── AiCandidateAnalysis.js       #  Match score, ATS score & candidate evaluation
+│       │   ├── StudentRoadmap.js            #  Skill gap answers, missing skills & weekly roadmap
+│       │   ├── Application.js               # Drive application schema
+│       │   ├── CompanyProfile.js
+│       │   ├── Drive.js
+│       │   ├── Notification.js
+│       │   ├── SavedDrive.js
+│       │   ├── StudentProfile.js
+│       │   └── User.js
+│       │
+│       ├── controllers/
+│       │   ├── aiController.js              # [NEW] Recruiter & Student AI endpoint controllers
+│       │   ├── authController.js
+│       │   ├── companyController.js
+│       │   ├── notificationController.js
+│       │   ├── studentController.js
+│       │   └── tpoController.js
+│       │
+│       ├── routes/
+│       │   ├── aiRoutes.js                  #  /api/ai endpoints
+│       │   ├── authRoutes.js
+│       │   ├── companyRoutes.js
+│       │   ├── notificationRoutes.js
+│       │   ├── studentRoutes.js
+│       │   └── tpoRoutes.js
+│       │
+│       ├── middleware/
+│       │   ├── auth.js                      # JWT protect & role authorize
+│       │   ├── errorHandler.js
+│       │   └── upload.js                    # Multer resume file upload
+│       │
+│       ├── utils/
+│       │   ├── testAi.js                    #  CLI verification tool (npm run test:ai)
+│       │   ├── seed.js                      #  Seed with realistic candidates & drives
+│       │   ├── eligibilityEngine.js
+│       │   ├── generateToken.js
+│       │   ├── resumeParser.js              # PDF resume parser
+│       │   └── sendEmail.js
+│       │
+│       └── uploads/                         # Directory for uploaded resume PDFs
+│
 └── frontend/
+    ├── index.html
+    ├── package.json                         # React 19, Vite, Recharts, Lucide
+    ├── package-lock.json
+    ├── postcss.config.js
+    ├── tailwind.config.js
+    ├── vite.config.js
+    │
+    ├── public/
+    │   ├── favicon.svg
+    │   └── icons.svg
+    │
     └── src/
-        ├── api/            # axios client + endpoint functions
-        ├── app/             # redux store + authSlice
-        ├── components/     # layout (Sidebar/Topbar), common UI, DriveForm
-        ├── pages/           # auth/, student/, company/, tpo/
-        │                    # student/ai/SkillGapDashboard.jsx
-        │                    # company/ai/RecruiterCopilot.jsx
-        └── routes/          # ProtectedRoute
-```
+        ├── App.jsx                          #  Registered AI Copilot & Skill Gap routes
+        ├── index.css                        # Tailwind directives & design system
+        ├── main.jsx
+        │
+        ├── api/
+        │   ├── client.js                    # Axios instance with auth interceptor
+        │   └── endpoints.js                 #  Added aiApi endpoints
+        │
+        ├── app/
+        │   ├── store.js                     # Redux Toolkit store
+        │   └── features/
+        │       └── authSlice.js
+        │
+        ├── components/
+        │   ├── ai/                          
+        │   │   └── AiJobMatchModal.jsx      AI Job Match Report modal (ATS, heatmap, radar)
+        │   │
+        │   ├── common/
+        │   │   ├── Button.jsx
+        │   │   ├── EmptyState.jsx
+        │   │   ├── Modal.jsx
+        │   │   ├── Spinner.jsx
+        │   │   └── StatusBadge.jsx
+        │   │
+        │   └── layout/
+        │       ├── DashboardLayout.jsx
+        │       ├── Sidebar.jsx               Added AI navigation links for all roles
+        │       └── Topbar.jsx
+        │
+        ├── pages/
+        │   ├── Landing.jsx
+        │   ├── auth/
+        │   │   ├── Login.jsx
+        │   │   ├── StudentSignup.jsx
+        │   │   └── CompanySignup.jsx
+        │   │
+        │   ├── company/
+        │   │   ├── AiRecruiterCopilot.jsx    Recruiter candidate screening & comparison
+        │   │   ├── Applicants.jsx            Added AI Copilot shortcut button
+        │   │   ├── Dashboard.jsx            Added AI Recruiter Copilot card
+        │   │   ├── MyDrives.jsx
+        │   │   └── Profile.jsx
+        │   │
+        │   ├── student/
+        │   │   ├── AiSkillGapDashboard.jsx  # Smart Skill Gap Dashboard & AI Learning Roadmap
+        │   │   ├── Dashboard.jsx            #] Added AI Placement Intelligence banner
+        │   │   ├── EligibilitySimulator.jsx #  Added AI Skill Gap bridge banner
+        │   │   ├── Applications.jsx
+        │   │   ├── BrowseDrives.jsx
+        │   │   ├── DriveDetails.jsx
+        │   │   ├── Notifications.jsx
+        │   │   ├── Profile.jsx
+        │   │   ├── SavedDrives.jsx
+        │   │   └── Settings.jsx
+        │   │
+        │   └── tpo/
+        │       ├── Analytics.jsx
+        │       ├── Companies.jsx
+        │       ├── Dashboard.jsx
+        │       ├── Drives.jsx
+        │       └── Students.jsx
+        │
+        └── routes/
+            └── ProtectedRoute.jsx      # ProtectedRoute
 
----
 
-## 🚀 Getting Started
 
-### Prerequisites
-- Node.js 18+ and npm
-- MongoDB Atlas cluster (or local MongoDB)
-- A **Gemini API key** (free tier works) for the AI Placement Intelligence module
-
-### 1. Backend
-```bash
-cd backend
-npm install
-cp .env.example .env      # then fill in MONGO_URI, JWT_SECRET, GEMINI_API_KEY
-npm run seed               # creates demo accounts + sample drives
-npm run dev                 # starts on http://localhost:5000
-```
-
-### 2. Frontend
-```bash
-cd frontend
-npm install
-cp .env.example .env       # defaults already point to localhost:5000/api
-npm run dev                 # starts on http://localhost:5173
-```
-
-Open the frontend URL and log in with any [demo account](#-demo-accounts) below. Without a `GEMINI_API_KEY`, everything works exactly as before — the AI Copilot pages will simply prompt you to add a key.
-
----
 
 ## 🔑 Demo Accounts
 
@@ -458,46 +544,8 @@ All passwords: **`Password@123`**
 
 > New student/company accounts can also be created from the Sign Up screen. TPO accounts are provisioned only via the seed script, matching how a real placement office would restrict that access.
 
----
 
-## ⚙️ Environment Variables
 
-**`backend/.env`**
-```env
-PORT=5000
-NODE_ENV=development
-CLIENT_URL=http://localhost:5173
-
-MONGO_URI=mongodb+srv://<user>:<password>@<cluster>.mongodb.net/campuslytics
-JWT_SECRET=change_this_to_a_long_random_secret
-JWT_EXPIRES_IN=7d
-
-STORAGE_DRIVER=local          # or "cloudinary"
-CLOUDINARY_CLOUD_NAME=
-CLOUDINARY_API_KEY=
-CLOUDINARY_API_SECRET=
-
-SMTP_HOST=                      # leave blank to skip email sending safely
-SMTP_PORT=587
-SMTP_USER=
-SMTP_PASS=
-EMAIL_FROM=Campuslytics <no-reply@campuslytics.com>
-
-# AI Placement Intelligence
-GEMINI_API_KEY=                 # leave blank to disable AI features safely
-GEMINI_MODEL=gemini-1.5-flash
-AI_MAX_RESUME_CHARS=8000
-```
-
-**`frontend/.env`**
-```env
-VITE_API_URL=http://localhost:5000/api
-VITE_AI_FEATURES_ENABLED=true
-```
-
-> ⚠️ Never commit real `.env` files. Only `.env.example` should be tracked in git — check `git status` before your first commit to confirm.
-
----
 
 ## 📊 Bulk Student Import Format
 
@@ -510,26 +558,6 @@ name, email, password, branch, year, cgpa, backlogs, skills, rollNumber
 
 ---
 
-## ☁️ Deployment
-
-| Layer | Suggested host | Notes |
-|---|---|---|
-| Frontend | Vercel / Netlify | `npm run build` then deploy `frontend/dist`; set `VITE_API_URL` to your live backend |
-| Backend | Render | Set all `backend/.env` variables in host settings (including `GEMINI_API_KEY`); set `CLIENT_URL` to your deployed frontend origin for CORS |
-| Database | MongoDB Atlas | Whitelist your backend host's IP (or `0.0.0.0/0` for quick testing) under Network Access |
-
----
-
-## 🗺️ Roadmap
-
-- [x] Core placement platform — auth, drives, applications, eligibility engine, analytics, notifications
-- [ ] **AI Placement Intelligence — Phase 1:** Gemini integration, resume extraction, structured JSON, MongoDB persistence
-- [ ] **AI Placement Intelligence — Phase 2:** Recruiter Copilot (AI resume screening + ranked dashboard)
-- [ ] **AI Placement Intelligence — Phase 3:** Student Copilot (skill gap dashboard + AI learning roadmap)
-- [ ] Live push notifications over the existing Socket.io layer
-- [ ] Resume-to-JD semantic matching (beyond keyword overlap)
-- [ ] Interview scheduling calendar sync
-- [ ] Company-side analytics (funnel conversion per drive)
 
 ---
 
