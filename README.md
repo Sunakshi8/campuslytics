@@ -400,18 +400,18 @@ campuslytics/
 │   ├── package.json                         # Includes @google/genai, test:ai script
 │   ├── package-lock.json
 │   └── src/
-│       ├── app.js                           # [MODIFIED] Mounted /api/ai routes
+│       ├── app.js                           #  Mounted /api/ai routes
 │       ├── server.js                        # HTTP server & socket initialization
 │       │
 │       ├── config/
 │       │   └── db.js                        # MongoDB Mongoose connection
 │       │
-│       ├── services/                        # [NEW DIRECTORY]
-│       │   └── geminiService.js             # [NEW] Gemini API client + Heuristic fallback engine
+│       ├── services/                       
+│       │   └── geminiService.js             # Gemini API client + Heuristic fallback engine
 │       │
 │       ├── models/
-│       │   ├── AiCandidateAnalysis.js       # [NEW] Match score, ATS score & candidate evaluation
-│       │   ├── StudentRoadmap.js            # [NEW] Skill gap answers, missing skills & weekly roadmap
+│       │   ├── AiCandidateAnalysis.js       #  Match score, ATS score & candidate evaluation
+│       │   ├── StudentRoadmap.js            #  Skill gap answers, missing skills & weekly roadmap
 │       │   ├── Application.js               # Drive application schema
 │       │   ├── CompanyProfile.js
 │       │   ├── Drive.js
@@ -421,7 +421,7 @@ campuslytics/
 │       │   └── User.js
 │       │
 │       ├── controllers/
-│       │   ├── aiController.js              # [NEW] Recruiter & Student AI endpoint controllers
+│       │   ├── aiController.js              #  Recruiter & Student AI endpoint controllers
 │       │   ├── authController.js
 │       │   ├── companyController.js
 │       │   ├── notificationController.js
@@ -429,7 +429,7 @@ campuslytics/
 │       │   └── tpoController.js
 │       │
 │       ├── routes/
-│       │   ├── aiRoutes.js                  # [NEW] /api/ai endpoints
+│       │   ├── aiRoutes.js                  #  /api/ai endpoints
 │       │   ├── authRoutes.js
 │       │   ├── companyRoutes.js
 │       │   ├── notificationRoutes.js
@@ -442,8 +442,8 @@ campuslytics/
 │       │   └── upload.js                    # Multer resume file upload
 │       │
 │       ├── utils/
-│       │   ├── testAi.js                    # [NEW] CLI verification tool (npm run test:ai)
-│       │   ├── seed.js                      # [MODIFIED] Seed with realistic candidates & drives
+│       │   ├── testAi.js                    # CLI verification tool (npm run test:ai)
+│       │   ├── seed.js                      #  Seed with realistic candidates & drives
 │       │   ├── eligibilityEngine.js
 │       │   ├── generateToken.js
 │       │   ├── resumeParser.js              # PDF resume parser
@@ -464,13 +464,13 @@ campuslytics/
     │   └── icons.svg
     │
     └── src/
-        ├── App.jsx                          # [MODIFIED] Registered AI Copilot & Skill Gap routes
+        ├── App.jsx                          # Registered AI Copilot & Skill Gap routes
         ├── index.css                        # Tailwind directives & design system
         ├── main.jsx
         │
         ├── api/
         │   ├── client.js                    # Axios instance with auth interceptor
-        │   └── endpoints.js                 # [MODIFIED] Added aiApi endpoints
+        │   └── endpoints.js                 #  Added aiApi endpoints
         │
         ├── app/
         │   ├── store.js                     # Redux Toolkit store
@@ -478,8 +478,8 @@ campuslytics/
         │       └── authSlice.js
         │
         ├── components/
-        │   ├── ai/                          # [NEW DIRECTORY]
-        │   │   └── AiJobMatchModal.jsx      # [NEW] AI Job Match Report modal (ATS, heatmap, radar)
+        │   ├── ai/                          
+        │   │   └── AiJobMatchModal.jsx      ] AI Job Match Report modal (ATS, heatmap, radar)
         │   │
         │   ├── common/
         │   │   ├── Button.jsx
@@ -490,7 +490,7 @@ campuslytics/
         │   │
         │   └── layout/
         │       ├── DashboardLayout.jsx
-        │       ├── Sidebar.jsx              # [MODIFIED] Added AI navigation links for all roles
+        │       ├── Sidebar.jsx             Added AI navigation links for all roles
         │       └── Topbar.jsx
         │
         ├── pages/
@@ -501,16 +501,16 @@ campuslytics/
         │   │   └── CompanySignup.jsx
         │   │
         │   ├── company/
-        │   │   ├── AiRecruiterCopilot.jsx   # [NEW] Recruiter candidate screening & comparison
-        │   │   ├── Applicants.jsx           # [MODIFIED] Added AI Copilot shortcut button
-        │   │   ├── Dashboard.jsx            # [MODIFIED] Added AI Recruiter Copilot card
+        │   │   ├── AiRecruiterCopilot.jsx   # Recruiter candidate screening & comparison
+        │   │   ├── Applicants.jsx           #  Added AI Copilot shortcut button
+        │   │   ├── Dashboard.jsx           
         │   │   ├── MyDrives.jsx
         │   │   └── Profile.jsx
         │   │
         │   ├── student/
-        │   │   ├── AiSkillGapDashboard.jsx  # [NEW] Smart Skill Gap Dashboard & AI Learning Roadmap
-        │   │   ├── Dashboard.jsx            # [MODIFIED] Added AI Placement Intelligence banner
-        │   │   ├── EligibilitySimulator.jsx # [MODIFIED] Added AI Skill Gap bridge banner
+        │   │   ├── AiSkillGapDashboard.jsx  #  Smart Skill Gap Dashboard & AI Learning Roadmap
+        │   │   ├── Dashboard.jsx            #  Added AI Placement Intelligence banner
+        │   │   ├── EligibilitySimulator.jsx # Added AI Skill Gap bridge banner
         │   │   ├── Applications.jsx
         │   │   ├── BrowseDrives.jsx
         │   │   ├── DriveDetails.jsx
