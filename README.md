@@ -458,46 +458,8 @@ All passwords: **`Password@123`**
 
 > New student/company accounts can also be created from the Sign Up screen. TPO accounts are provisioned only via the seed script, matching how a real placement office would restrict that access.
 
----
 
-## ⚙️ Environment Variables
 
-**`backend/.env`**
-```env
-PORT=5000
-NODE_ENV=development
-CLIENT_URL=http://localhost:5173
-
-MONGO_URI=mongodb+srv://<user>:<password>@<cluster>.mongodb.net/campuslytics
-JWT_SECRET=change_this_to_a_long_random_secret
-JWT_EXPIRES_IN=7d
-
-STORAGE_DRIVER=local          # or "cloudinary"
-CLOUDINARY_CLOUD_NAME=
-CLOUDINARY_API_KEY=
-CLOUDINARY_API_SECRET=
-
-SMTP_HOST=                      # leave blank to skip email sending safely
-SMTP_PORT=587
-SMTP_USER=
-SMTP_PASS=
-EMAIL_FROM=Campuslytics <no-reply@campuslytics.com>
-
-# AI Placement Intelligence
-GEMINI_API_KEY=                 # leave blank to disable AI features safely
-GEMINI_MODEL=gemini-1.5-flash
-AI_MAX_RESUME_CHARS=8000
-```
-
-**`frontend/.env`**
-```env
-VITE_API_URL=http://localhost:5000/api
-VITE_AI_FEATURES_ENABLED=true
-```
-
-> ⚠️ Never commit real `.env` files. Only `.env.example` should be tracked in git — check `git status` before your first commit to confirm.
-
----
 
 ## 📊 Bulk Student Import Format
 
@@ -510,27 +472,4 @@ name, email, password, branch, year, cgpa, backlogs, skills, rollNumber
 
 ---
 
-## ☁️ Deployment
 
-| Layer | Suggested host | Notes |
-|---|---|---|
-| Frontend | Vercel / Netlify | `npm run build` then deploy `frontend/dist`; set `VITE_API_URL` to your live backend |
-| Backend | Render | Set all `backend/.env` variables in host settings (including `GEMINI_API_KEY`); set `CLIENT_URL` to your deployed frontend origin for CORS |
-| Database | MongoDB Atlas | Whitelist your backend host's IP (or `0.0.0.0/0` for quick testing) under Network Access |
-
----
-
-## 🗺️ Roadmap
-
-- [x] Core placement platform — auth, drives, applications, eligibility engine, analytics, notifications
-- [ ] **AI Placement Intelligence — Phase 1:** Gemini integration, resume extraction, structured JSON, MongoDB persistence
-- [ ] **AI Placement Intelligence — Phase 2:** Recruiter Copilot (AI resume screening + ranked dashboard)
-- [ ] **AI Placement Intelligence — Phase 3:** Student Copilot (skill gap dashboard + AI learning roadmap)
-- [ ] Live push notifications over the existing Socket.io layer
-- [ ] Resume-to-JD semantic matching (beyond keyword overlap)
-- [ ] Interview scheduling calendar sync
-- [ ] Company-side analytics (funnel conversion per drive)
-
----
-
-<p align="center">Built for campuses that want placements to run on data — and now on AI — not spreadsheets.</p>
