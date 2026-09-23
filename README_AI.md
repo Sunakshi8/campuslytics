@@ -155,7 +155,7 @@ All demo accounts use the password: `Password@123`
 
 ---
 
-## 🧪 Testing the AI Module via CLI
+
 
 To verify all AI endpoints and database models in isolation:
 ```bash
