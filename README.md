@@ -54,7 +54,7 @@ All three roles get **JWT-secured, role-gated access** and an in-app **notificat
 
 ---
 
-## 🧠 AI Placement Intelligence *(new)*
+## 🧠 AI Placement Intelligence 
 
 A dedicated AI module sitting on top of the existing platform — **one shared AI backend, two copilots**. It doesn't replace any decision-maker: **the AI assists, the recruiter still decides.**
 
@@ -139,7 +139,7 @@ flowchart LR
 | **Phase 2 — Recruiter Copilot** | Recruiter-facing | Analyze candidate vs. drive JD → compute match score → extract matched/missing skills → extract strengths → generate candidate summary → recruiter dashboard UI → sort/filter by score |
 | **Phase 3 — Student Copilot** | Student-facing | Aggregate required skills across all drives → compare vs. student skills → skill-gap calculation → priority ranking (by # drives affected) → Smart Skill Gap Dashboard UI → AI learning roadmap generation |
 
-> **Guardrail by design:** AI output is advisory metadata attached to existing `Application` and `StudentProfile` records — it augments the current rule-based `eligibilityEngine.js`, it doesn't replace it. If no Gemini API key is configured, the platform runs exactly as it does today.
+
 
 ---
 
@@ -441,7 +441,6 @@ cp .env.example .env       # defaults already point to localhost:5000/api
 npm run dev                 # starts on http://localhost:5173
 ```
 
-Open the frontend URL and log in with any [demo account](#-demo-accounts) below. Without a `GEMINI_API_KEY`, everything works exactly as before — the AI Copilot pages will simply prompt you to add a key.
 
 ---
 
@@ -460,18 +459,6 @@ All passwords: **`Password@123`**
 
 > New student/company accounts can also be created from the Sign Up screen. TPO accounts are provisioned only via the seed script, matching how a real placement office would restrict that access.
 
-
-
-
-## 📊 Bulk Student Import Format
-
-TPO → Students → **Bulk Import** accepts `.csv` or `.xlsx` with these columns:
-
-```
-name, email, password, branch, year, cgpa, backlogs, skills, rollNumber
-```
-`skills` accepts a comma/semicolon-separated string, e.g. `"Python, DSA, SQL"`.
-
----
+Built for campuses that want placements to run on data — and now on AI — not spreadsheets.
 
 
