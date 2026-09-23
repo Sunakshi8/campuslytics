@@ -1,5 +1,6 @@
 # 🎓 Campuslytics — Placement & Internship Portal
-
+## 🚀 Live Demo
+👉https://campuslytics-kpjt.vercel.app/
 **Your Campus. Your Career.**
 A full-stack MERN platform that centralizes student, company, and TPO placement workflows — automated eligibility checks, application tracking, live placement analytics, and an **AI Placement Intelligence** layer that gives recruiters an AI-ranked shortlist and gives students a personal skill-gap coach.
 
