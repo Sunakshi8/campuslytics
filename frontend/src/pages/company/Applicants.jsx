@@ -77,7 +77,8 @@ export default function Applicants() {
         <EmptyState title="No applicants" description="No students have applied under this filter yet." />
       ) : (
         <div className="card overflow-hidden">
-          <table className="w-full text-left text-sm">
+          <div className="overflow-x-auto">
+          <table className="min-w-[720px] w-full text-left text-sm">
             <thead className="bg-gray-50 text-xs uppercase text-gray-400">
               <tr>
                 <th className="px-5 py-3">Student</th>
@@ -113,6 +114,7 @@ export default function Applicants() {
               ))}
             </tbody>
           </table>
+          </div>
         </div>
       )}
     </DashboardLayout>

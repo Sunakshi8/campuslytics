@@ -49,7 +49,7 @@ export default function DriveForm({ initial, onSubmit, onCancel, submitting }) {
 
   return (
     <form onSubmit={handleSubmit} className="space-y-4">
-      <div className="grid grid-cols-2 gap-4">
+      <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
         <TextInput label="Role Title" required value={form.title} onChange={(e) => setForm({ ...form, title: e.target.value })} placeholder="SDE Intern" />
         <label className="block">
           <span className="mb-1.5 block text-sm font-medium text-ink-800">Job Type</span>
@@ -65,12 +65,12 @@ export default function DriveForm({ initial, onSubmit, onCancel, submitting }) {
         </label>
       </div>
 
-      <div className="grid grid-cols-2 gap-4">
+      <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
         <TextInput label="Location" value={form.location} onChange={(e) => setForm({ ...form, location: e.target.value })} />
         <TextInput label="Batch" placeholder="2025-2027" value={form.batch} onChange={(e) => setForm({ ...form, batch: e.target.value })} />
       </div>
 
-      <div className="grid grid-cols-3 gap-4">
+      <div className="grid grid-cols-1 gap-4 sm:grid-cols-3">
         <TextInput label="Package Min (LPA)" type="number" value={form.packageMin} onChange={(e) => setForm({ ...form, packageMin: e.target.value })} />
         <TextInput label="Package Max (LPA)" type="number" value={form.packageMax} onChange={(e) => setForm({ ...form, packageMax: e.target.value })} />
         <TextInput label="Stipend (₹/mo)" type="number" value={form.stipend} onChange={(e) => setForm({ ...form, stipend: e.target.value })} />
@@ -102,7 +102,7 @@ export default function DriveForm({ initial, onSubmit, onCancel, submitting }) {
 
       <div className="rounded-xl border border-gray-100 p-4">
         <p className="mb-3 text-sm font-semibold text-ink-800">Eligibility Rules</p>
-        <div className="grid grid-cols-2 gap-4">
+        <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
           <TextInput label="Min CGPA" type="number" step="0.1" value={form.eligibility.minCgpa} onChange={(e) => setForm({ ...form, eligibility: { ...form.eligibility, minCgpa: e.target.value } })} />
           <TextInput label="Max Backlogs" type="number" value={form.eligibility.maxBacklogs} onChange={(e) => setForm({ ...form, eligibility: { ...form.eligibility, maxBacklogs: e.target.value } })} />
           <TextInput label="Eligible Branches (comma separated, blank = all)" value={form.eligibility.branches} onChange={(e) => setForm({ ...form, eligibility: { ...form.eligibility, branches: e.target.value } })} />

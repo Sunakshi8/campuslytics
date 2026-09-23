@@ -37,7 +37,7 @@ export default function CompanyProfile() {
     <DashboardLayout role="company" title="Company Profile">
       <form onSubmit={handleSave} className="card max-w-2xl space-y-4 p-6">
         <TextInput label="Company Name" value={profile.companyName || ''} onChange={(e) => setProfile({ ...profile, companyName: e.target.value })} />
-        <div className="grid grid-cols-2 gap-4">
+        <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
           <TextInput label="Industry" value={profile.industry || ''} onChange={(e) => setProfile({ ...profile, industry: e.target.value })} />
           <TextInput label="Location" value={profile.location || ''} onChange={(e) => setProfile({ ...profile, location: e.target.value })} />
         </div>
