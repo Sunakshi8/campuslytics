@@ -389,31 +389,145 @@ sequenceDiagram
 ---
 
 ## 📁 Project Structure
-
-```
 campuslytics/
+├── README.md
+├── README_AI.md                             # Complete AI setup & run instructions
+│
 ├── backend/
+│   ├── .env                                 # Server, MongoDB URI & GEMINI_API_KEY
+│   ├── .env.example
+│   ├── .gitignore
+│   ├── package.json                         # Includes @google/genai, test:ai script
+│   ├── package-lock.json
 │   └── src/
-│       ├── config/         # db.js, cloudinary.js
-│       ├── models/         # User, StudentProfile, CompanyProfile, Drive, Application,
-│       │                   # AIAnalysis, SkillGapReport ...
-│       ├── controllers/    # authController, studentController, companyController,
-│       │                   # tpoController, aiController
-│       ├── routes/         # authRoutes, studentRoutes, companyRoutes, tpoRoutes, aiRoutes
-│       ├── middleware/     # auth (JWT + role guard), upload, errorHandler
-│       └── utils/          # eligibilityEngine.js, resumeParser.js, sendEmail.js, seed.js
-│       └── services/
-│           └── ai/         # geminiClient.js, resumeScreening.js, skillGapEngine.js
+│       ├── app.js                           # [MODIFIED] Mounted /api/ai routes
+│       ├── server.js                        # HTTP server & socket initialization
+│       │
+│       ├── config/
+│       │   └── db.js                        # MongoDB Mongoose connection
+│       │
+│       ├── services/                        # [NEW DIRECTORY]
+│       │   └── geminiService.js             # [NEW] Gemini API client + Heuristic fallback engine
+│       │
+│       ├── models/
+│       │   ├── AiCandidateAnalysis.js       # [NEW] Match score, ATS score & candidate evaluation
+│       │   ├── StudentRoadmap.js            # [NEW] Skill gap answers, missing skills & weekly roadmap
+│       │   ├── Application.js               # Drive application schema
+│       │   ├── CompanyProfile.js
+│       │   ├── Drive.js
+│       │   ├── Notification.js
+│       │   ├── SavedDrive.js
+│       │   ├── StudentProfile.js
+│       │   └── User.js
+│       │
+│       ├── controllers/
+│       │   ├── aiController.js              # [NEW] Recruiter & Student AI endpoint controllers
+│       │   ├── authController.js
+│       │   ├── companyController.js
+│       │   ├── notificationController.js
+│       │   ├── studentController.js
+│       │   └── tpoController.js
+│       │
+│       ├── routes/
+│       │   ├── aiRoutes.js                  # [NEW] /api/ai endpoints
+│       │   ├── authRoutes.js
+│       │   ├── companyRoutes.js
+│       │   ├── notificationRoutes.js
+│       │   ├── studentRoutes.js
+│       │   └── tpoRoutes.js
+│       │
+│       ├── middleware/
+│       │   ├── auth.js                      # JWT protect & role authorize
+│       │   ├── errorHandler.js
+│       │   └── upload.js                    # Multer resume file upload
+│       │
+│       ├── utils/
+│       │   ├── testAi.js                    # [NEW] CLI verification tool (npm run test:ai)
+│       │   ├── seed.js                      # [MODIFIED] Seed with realistic candidates & drives
+│       │   ├── eligibilityEngine.js
+│       │   ├── generateToken.js
+│       │   ├── resumeParser.js              # PDF resume parser
+│       │   └── sendEmail.js
+│       │
+│       └── uploads/                         # Directory for uploaded resume PDFs
+│
 └── frontend/
+    ├── index.html
+    ├── package.json                         # React 19, Vite, Recharts, Lucide
+    ├── package-lock.json
+    ├── postcss.config.js
+    ├── tailwind.config.js
+    ├── vite.config.js
+    │
+    ├── public/
+    │   ├── favicon.svg
+    │   └── icons.svg
+    │
     └── src/
-        ├── api/            # axios client + endpoint functions
-        ├── app/             # redux store + authSlice
-        ├── components/     # layout (Sidebar/Topbar), common UI, DriveForm
-        ├── pages/           # auth/, student/, company/, tpo/
-        │                    # student/ai/SkillGapDashboard.jsx
-        │                    # company/ai/RecruiterCopilot.jsx
-        └── routes/          # ProtectedRoute
-```
+        ├── App.jsx                          # [MODIFIED] Registered AI Copilot & Skill Gap routes
+        ├── index.css                        # Tailwind directives & design system
+        ├── main.jsx
+        │
+        ├── api/
+        │   ├── client.js                    # Axios instance with auth interceptor
+        │   └── endpoints.js                 # [MODIFIED] Added aiApi endpoints
+        │
+        ├── app/
+        │   ├── store.js                     # Redux Toolkit store
+        │   └── features/
+        │       └── authSlice.js
+        │
+        ├── components/
+        │   ├── ai/                          # [NEW DIRECTORY]
+        │   │   └── AiJobMatchModal.jsx      # [NEW] AI Job Match Report modal (ATS, heatmap, radar)
+        │   │
+        │   ├── common/
+        │   │   ├── Button.jsx
+        │   │   ├── EmptyState.jsx
+        │   │   ├── Modal.jsx
+        │   │   ├── Spinner.jsx
+        │   │   └── StatusBadge.jsx
+        │   │
+        │   └── layout/
+        │       ├── DashboardLayout.jsx
+        │       ├── Sidebar.jsx              # [MODIFIED] Added AI navigation links for all roles
+        │       └── Topbar.jsx
+        │
+        ├── pages/
+        │   ├── Landing.jsx
+        │   ├── auth/
+        │   │   ├── Login.jsx
+        │   │   ├── StudentSignup.jsx
+        │   │   └── CompanySignup.jsx
+        │   │
+        │   ├── company/
+        │   │   ├── AiRecruiterCopilot.jsx   # [NEW] Recruiter candidate screening & comparison
+        │   │   ├── Applicants.jsx           # [MODIFIED] Added AI Copilot shortcut button
+        │   │   ├── Dashboard.jsx            # [MODIFIED] Added AI Recruiter Copilot card
+        │   │   ├── MyDrives.jsx
+        │   │   └── Profile.jsx
+        │   │
+        │   ├── student/
+        │   │   ├── AiSkillGapDashboard.jsx  # [NEW] Smart Skill Gap Dashboard & AI Learning Roadmap
+        │   │   ├── Dashboard.jsx            # [MODIFIED] Added AI Placement Intelligence banner
+        │   │   ├── EligibilitySimulator.jsx # [MODIFIED] Added AI Skill Gap bridge banner
+        │   │   ├── Applications.jsx
+        │   │   ├── BrowseDrives.jsx
+        │   │   ├── DriveDetails.jsx
+        │   │   ├── Notifications.jsx
+        │   │   ├── Profile.jsx
+        │   │   ├── SavedDrives.jsx
+        │   │   └── Settings.jsx
+        │   │
+        │   └── tpo/
+        │       ├── Analytics.jsx
+        │       ├── Companies.jsx
+        │       ├── Dashboard.jsx
+        │       ├── Drives.jsx
+        │       └── Students.jsx
+        │
+        └── routes/
+            └── ProtectedRoute.jsx
 
 ---
 
