@@ -26,13 +26,9 @@ A full-stack MERN platform that centralizes student, company, and TPO placement 
 - [Data Model (ER Diagram)](#️-data-model-er-diagram)
 - [Key Flows](#-key-flows)
 - [Tech Stack](#️-tech-stack)
-- [Project Structure](#-project-structure)
 - [Getting Started](#-getting-started)
 - [Demo Accounts](#-demo-accounts)
 - [Environment Variables](#️-environment-variables)
-- [Bulk Student Import Format](#-bulk-student-import-format)
-- [Deployment](#️-deployment)
-- [Roadmap](#️-roadmap)
 
 ---
 
