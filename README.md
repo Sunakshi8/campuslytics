@@ -433,3 +433,12 @@ All passwords: **`Password@123`**
 Built for campuses that want placements to run on data — and now on AI — not spreadsheets.
 
 
+## 👩‍💻 Author
+
+**Sunakshi Rana**
+Full-Stack Developer | MERN · Flutter · AI Applications
+
+[GitHub](https://github.com/Sunakshi8) · sunakshirana264@gmail.com
+
+
+
